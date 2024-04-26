@@ -99,7 +99,7 @@ export class PatientService {
 
 
 
-    async getAllPatientsAndDoctors(page: number, perPage: string) {
+      async getAllPatientsAndDoctors(page: number, perPage: string) {
         const limit = parseInt(perPage, 10);
         const skip = (page - 1) * limit; // Calculate skip offset for pagination
 
@@ -107,19 +107,10 @@ export class PatientService {
         const patients = await this.prisma.patients.findMany({
             take: limit,
             skip: skip,
+            include: {
+                doctor: true, // Assuming the name of the relation is 'doctor'
+            },
         });
-
-        // Calculate remaining limit for doctors
-        const remainingLimitForDoctors = limit - patients.length;
-
-        // Retrieve doctors with adjusted limit
-        const doctors = await this.prisma.doctors.findMany({
-            take: remainingLimitForDoctors,
-            skip: skip,
-        });
-
-        return { patients, doctors };
-    }
 
 
 }

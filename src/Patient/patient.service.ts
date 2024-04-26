@@ -112,5 +112,27 @@ export class PatientService {
             },
         });
 
+            // async getAllPatientsAndDoctors(page: number, perPage: string) {
+    //     const limit = parseInt(perPage, 10);
+    //     const skip = (page - 1) * limit; // Calculate skip offset for pagination
+
+    //     // Retrieve patients
+    //     const patients = await this.prisma.patients.findMany({
+    //         take: limit,
+    //         skip: skip,
+    //     });
+
+    //     // Calculate remaining limit for doctors
+    //     const remainingLimitForDoctors = limit - patients.length;
+
+    //     // Retrieve doctors with adjusted limit
+    //     const doctors = await this.prisma.doctors.findMany({
+    //         take: remainingLimitForDoctors,
+    //         skip: skip,
+    //     });
+
+    //     return { patients, doctors };
+    // }
+
 
 }

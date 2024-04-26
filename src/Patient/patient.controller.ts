@@ -59,9 +59,9 @@ export class PatientController {
         return this.patientService.changeAppointmentStatus(formattedId, status);
     }
 
-    @Get() //task5 pagination
-    //@UseGuards(RoleGuard)
-    async findAll(@Query('skip') skip?: number, @Query('take') take?: string): Promise<{ patients: Patients[], doctors: Doctors[] }> {
+   @Get() //task5 pagination
+    @UseGuards(RoleGuard)
+    async findAll(@Query('skip') skip?: number, @Query('take') take?: string): Promise<{ patients: Patients[] }> {
         return this.patientService.getAllPatientsAndDoctors(skip, take);
     }
 

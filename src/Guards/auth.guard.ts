@@ -28,7 +28,7 @@ export class AuthGuard implements CanActivate {
       if (error.name === 'TokenExpiredError') {
         console.log(token);
         // If the token is expired, update it in the database
-        //await this.userService.deleteToken(token); // Assuming you have a method to clear the token by its value
+        await this.userService.deleteToken(token); // Assuming you have a method to clear the token by its value
       }
       throw new UnauthorizedException();
     }

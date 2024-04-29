@@ -14,10 +14,11 @@ datasource db {
 }
 
 model User {
-  username String @unique
+  username String  @unique
   password String
-  userId   Int    @id @default(autoincrement())
-  token    String @unique
+  userId   Int     @id @default(autoincrement())
+  token    String?
+  salt     String
   role     String
 }
 
@@ -53,15 +54,22 @@ model Patients {
   appointments Appointments[]
 }
 
+enum Status {
+  pending
+  completed
+  cancelled
+  approved
+}
+
 // Define Appointments model
 model Appointments {
   appointment_id   Int      @id @default(autoincrement())
   doctor_id        Int
   patient_id       Int
+  status           Status   @default(pending)
   appointment_date DateTime
-  appointment_time DateTime
-
+  end_time         DateTime
   // Add opposite relation fields for Doctors and Patients
-  doctor  Doctors  @relation(fields: [doctor_id], references: [doctor_id])
-  patient Patients @relation(fields: [patient_id], references: [patient_id])
+  doctor           Doctors  @relation(fields: [doctor_id], references: [doctor_id])
+  patient          Patients @relation(fields: [patient_id], references: [patient_id])
 }

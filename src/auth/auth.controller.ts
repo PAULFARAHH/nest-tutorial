@@ -8,6 +8,15 @@ import { request } from 'express';
 export class AuthController {
     constructor(private authService: AuthService) { }
 
+    @HttpCode(HttpStatus.CREATED)
+    @Post('signup')
+    async signUp(@Body() signUpDto: Record<string, any>) {
+        const { username, password, role } = signUpDto;
+        const user = await this.authService.signUp(username, password, role);
+        return { message: 'User created successfully', user };
+    }
+
+
     @HttpCode(HttpStatus.OK)
     @Post('login')
     signIn(@Body() signInDto: Record<string, any>) {

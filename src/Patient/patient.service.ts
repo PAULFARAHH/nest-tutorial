@@ -1,10 +1,16 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Appointments, Patients, Status } from '@prisma/client'; // Import the Doctor type from Prisma
 import { request } from 'express';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { Appointments, Patients, Status } from '@prisma/client'; // Import the Doctor type from Prisma
+import { request } from 'express';
 import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class PatientService {
+    findAll(skip: number, take: number): { patient_id: number; name: string; doctor_id: number; }[] | PromiseLike<{ patient_id: number; name: string; doctor_id: number; }[]> {
+        throw new Error('Method not implemented.');
+    }
     findAll(skip: number, take: number): { patient_id: number; name: string; doctor_id: number; }[] | PromiseLike<{ patient_id: number; name: string; doctor_id: number; }[]> {
         throw new Error('Method not implemented.');
     }
